@@ -1,0 +1,45 @@
+<PageHeader 
+  @titleLabel={{i18n "admin.dashboard.new_features.title"}}
+  @descriptionLabel={{i18n "admin.dashboard.new_features.subtitle"}}
+  {{! Você pode adicionar um link para suas próprias release notes se desejar }}
+  {{! {{i18n "admin.dashboard.new_features.learn_more" url="https://seu-link"}} }}
+  @hideTabs={{true}}
+>
+  <:breadcrumbs>
+    <BreadcrumbsItem @path="/admin" @label={{i18n "admin_title"}} />
+    <BreadcrumbsItem 
+      @path="/admin/whats-new"
+      @label={{i18n "admin.dashboard.new_features.title"}}
+    />
+  </:breadcrumbs>
+
+  <:actions as |actions|>
+    <actions.Primary 
+      @label="admin.new_features.check_for_updates"
+      @action={{this.checkForUpdates}}
+    />
+  </:actions>
+</PageHeader>
+
+<div class="admin-container admin-config-page__main-area">
+  <div class="admin-config-area">
+    {{! Aqui você pode adicionar seu próprio conteúdo }}
+    <div class="quick-posts-whats-new">
+      <h2>{{i18n "quick_posts.whats_new.title"}}</h2>
+      <div class="feature-list">
+        <div class="feature-item">
+          <h3>{{i18n "quick_posts.whats_new.feature_1.title"}}</h3>
+          <p>{{i18n "quick_posts.whats_new.feature_1.description"}}</p>
+        </div>
+        <div class="feature-item">
+          <h3>{{i18n "quick_posts.whats_new.feature_2.title"}}</h3>
+          <p>{{i18n "quick_posts.whats_new.feature_2.description"}}</p>
+        </div>
+        <div class="feature-item">
+          <h3>{{i18n "quick_posts.whats_new.feature_3.title"}}</h3>
+          <p>{{i18n "quick_posts.whats_new.feature_3.description"}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

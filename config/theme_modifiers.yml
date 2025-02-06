@@ -1,0 +1,4 @@
+quick_posts_enabled:
+  type: boolean
+  default: true
+  description: "Enable quick posts functionality" 

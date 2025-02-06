@@ -1,0 +1,4 @@
+plugins:
+  enable_quick_posts:
+    default: true
+    client: true 

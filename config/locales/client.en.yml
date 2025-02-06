@@ -1,0 +1,21 @@
+en:
+  js:
+    quick_posts:
+      title: "Quick Posts"
+      loading: "Loading posts..."
+      write_comment: "Write a quick comment..."
+      create_comment: "Write a comment"
+      load_more: "Load more posts"
+      error_creating: "There was an error creating your post"
+      disabled: "Quick posts are disabled"
+      whats_new:
+        title: "Quick Posts - What's New"
+        feature_1:
+          title: "Quick Posts in Topics"
+          description: "Now you can quickly view and respond to posts directly from the topic list."
+        feature_2:
+          title: "Improved User Experience"
+          description: "A streamlined interface for viewing and creating posts without leaving the current page."
+        feature_3:
+          title: "Performance Optimizations"
+          description: "Better loading times and smoother interactions with the quick posts feature." 

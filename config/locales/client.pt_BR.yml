@@ -1,0 +1,21 @@
+pt_BR:
+  js:
+    quick_posts:
+      title: "Posts Rápidos"
+      loading: "Carregando posts..."
+      write_comment: "Escreva um comentário rápido..."
+      create_comment: "Escrever um comentário"
+      load_more: "Carregar mais posts"
+      error_creating: "Houve um erro ao criar seu post"
+      disabled: "Posts rápidos estão desabilitados"
+      whats_new:
+        title: "Posts Rápidos - Novidades"
+        feature_1:
+          title: "Posts Rápidos em Tópicos"
+          description: "Agora você pode visualizar e responder posts diretamente da lista de tópicos."
+        feature_2:
+          title: "Experiência do Usuário Melhorada"
+          description: "Uma interface otimizada para visualizar e criar posts sem sair da página atual."
+        feature_3:
+          title: "Otimizações de Performance"
+          description: "Melhor tempo de carregamento e interações mais suaves com o recurso de posts rápidos." 
