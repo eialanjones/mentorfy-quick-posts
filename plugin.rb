@@ -3,8 +3,8 @@
 # name: discourse-quick-posts
 # about: Adds quick posts functionality to topics
 # version: 0.1
-# authors: Your Name
-# url: https://github.com/your-username/discourse-quick-posts
+# authors: Mentorfy
+# url: https://github.com/eialanjones/discourse-quick-posts
 
 enabled_site_setting :enable_quick_posts
 
@@ -14,6 +14,7 @@ after_initialize do
       engine_name "quick_posts"
       isolate_namespace QuickPosts
     end
+    PLUGIN_NAME = "discourse-quick-posts"
   end
 
   require_dependency "application_controller"
