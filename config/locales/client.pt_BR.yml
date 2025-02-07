@@ -3,11 +3,12 @@ pt_BR:
     quick_posts:
       title: "Posts Rápidos"
       loading: "Carregando posts..."
-      write_comment: "Escreva um comentário rápido..."
-      create_comment: "Escrever um comentário"
-      load_more: "Carregar mais posts"
-      error_creating: "Houve um erro ao criar seu post"
-      disabled: "Posts rápidos estão desabilitados"
+      write_comment: "Escreva um comentário..."
+      create_comment: "Adicionar comentário"
+      load_more: "Carregar mais"
+      error_creating: "Erro ao criar quick post"
+      disabled: "Quick Posts está desabilitado"
+      topic_not_found: "Tópico não encontrado"
       whats_new:
         title: "Posts Rápidos - Novidades"
         feature_1:
@@ -18,4 +19,5 @@ pt_BR:
           description: "Uma interface otimizada para visualizar e criar posts sem sair da página atual."
         feature_3:
           title: "Otimizações de Performance"
-          description: "Melhor tempo de carregamento e interações mais suaves com o recurso de posts rápidos." 
+          description: "Melhor tempo de carregamento e interações mais suaves com o recurso de posts rápidos."
+      min_length_error: "O comentário deve ter pelo menos %{count} caracteres" 

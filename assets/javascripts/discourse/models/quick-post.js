@@ -1,7 +1,14 @@
 import RestModel from "discourse/models/rest";
 import { registerModelTransformer } from "discourse/lib/model-transformers";
 
-export default class QuickPost extends RestModel {}
+export default class QuickPost extends RestModel {
+  createProperties() {
+    return {
+      raw: this.raw,
+      topic_id: this.topic_id
+    };
+  }
+}
 
 // Registrando o modelo e adaptador
 export function registerQuickPostModel(api) {
@@ -28,9 +35,7 @@ export function registerQuickPostModel(api) {
       createRecord(store, type, attrs) {
         return this.ajax(`/t/${attrs.topic_id}/quick_posts`, {
           type: "POST",
-          data: {
-            raw: attrs.raw
-          }
+          data: attrs
         }).then((json) => {
           if (!json) {
             return null;

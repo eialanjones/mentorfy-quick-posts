@@ -2,14 +2,17 @@
 
 # name: discourse-quick-posts
 # about: adiciona funcionalidade de posts rápidos(comentários) aos tópicos
-# version: 0.1
-# authors: Mentorfy
+# version: 0.2
+# authors: Mentor
 # url: https://github.com/eialanjones/discourse-quick-posts
 
 enabled_site_setting :enable_quick_posts
 
 register_asset "stylesheets/common/base/quick-posts.scss"
 register_asset "javascripts/discourse/components/quick-posts.gjs"
+
+# Registra as traduções
+register_locale("pt_BR", name: "Português (Brasil)")
 
 after_initialize do
   module ::QuickPosts
@@ -67,7 +70,12 @@ after_initialize do
     def create
       return render json: { error: I18n.t("quick_posts.disabled") } unless SiteSetting.enable_quick_posts
 
-      topic_id = params[:topic_id]
+      # Pega o topic_id da URL ou dos parâmetros
+      topic_id = params[:topic_id] || params.dig(:quick_post, :topic_id)
+      raw = params[:raw] || params.dig(:quick_post, :raw)
+
+      return render_json_error(I18n.t("quick_posts.missing_params")) if topic_id.blank? || raw.blank?
+
       topic = Topic.find_by(id: topic_id)
       return render_json_error(I18n.t("quick_posts.topic_not_found")) unless topic
       
@@ -76,7 +84,7 @@ after_initialize do
       post_creator = PostCreator.new(
         current_user,
         topic_id: topic.id,
-        raw: params[:raw],
+        raw: raw,
         skip_validations: false
       )
       
@@ -95,7 +103,7 @@ after_initialize do
       .where(deleted_at: nil)
       .where.not(post_number: 1)
       .where(post_type: Post.types[:regular])
-      .order(created_at: :desc)
+      .order(created_at: :asc)
       .includes(:user)
       .limit(3)
   end
@@ -105,7 +113,7 @@ after_initialize do
       .where(deleted_at: nil)
       .where.not(post_number: 1)
       .where(post_type: Post.types[:regular])
-      .order(created_at: :desc)
+      .order(created_at: :asc)
       .includes(:user)
   end
 

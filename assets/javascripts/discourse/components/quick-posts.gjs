@@ -113,7 +113,7 @@ export default class QuickPosts extends Component {
           user: post.user || this.currentUser
         };
 
-        this.posts.unshiftObject(newPost);
+        this.posts.pushObject(newPost);
         this.replyContent = "";
         this.showError = false;
       }

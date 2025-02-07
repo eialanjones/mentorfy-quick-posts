@@ -1,0 +1,6 @@
+pt_BR:
+  quick_posts:
+    disabled: "Quick Posts está desabilitado"
+    topic_not_found: "Tópico não encontrado"
+    not_authorized: "Você não tem permissão para realizar esta ação"
+    missing_params: "Parâmetros obrigatórios faltando (topic_id e raw são necessários)" 
