@@ -1,0 +1,224 @@
+.topic-list-item-quick-posts {
+  display: flex;
+
+  &,
+  &.topic-list-item,
+  tr {
+    border-bottom: none;
+    width: 100%;
+  }
+
+  td {
+    padding: 0;
+    width: 100%;
+    display: table-cell;
+  }
+}
+
+.quick-posts {
+  background: var(--secondary);
+  border-radius: 8px;
+  padding: 16px;
+  padding-top: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  margin-top: -26px;
+
+  .loading-spinner {
+    text-align: center;
+    color: var(--primary-medium);
+    padding: 1em;
+  }
+
+  .quick-posts-list {
+    margin-top: 18px;
+
+    .quick-post-item {
+      display: flex;
+      padding: 4px 0;
+
+      .quick-post-avatar {
+        margin-right: 12px;
+
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+        }
+      }
+
+      .quick-post-content {
+        flex: 1;
+        background: var(--primary-very-low);
+        border-radius: 18px;
+        padding: 8px;
+        padding-left: 12px;
+        padding-right: 12px;
+
+        .quick-post-meta {
+          margin-bottom: 4px;
+
+          .username {
+            font-weight: bold;
+            color: var(--primary);
+          }
+
+          .date {
+            margin-left: 8px;
+            color: var(--primary-medium);
+            font-size: var(--font-down-2);
+          }
+        }
+
+        .cooked {
+          color: var(--primary);
+          font-size: var(--font-0);
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .quick-reply-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1em;
+
+    .create-quick-post.btn-flat {
+      color: var(--tertiary);
+      padding: 0em;
+      font-weight: bold;
+
+      &:hover {
+        color: var(--tertiary-hover);
+      }
+
+      .d-icon {
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  .load-more {
+    width: 100%;
+    text-align: center;
+    color: var(--tertiary);
+    background: transparent;
+    padding: 8px;
+    margin: 8px 0;
+    font-weight: bold;
+
+    &:hover {
+      background: var(--primary-very-low);
+    }
+  }
+
+  .quick-reply {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .quick-reply-input {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+      margin-bottom: 8px;
+
+      .quick-reply-avatar {
+        margin-right: 12px;
+
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+        }
+      }
+
+      textarea {
+        flex: 1;
+        min-height: 36px;
+        padding: 8px 12px;
+        padding-right: 48px;
+        border: 1px solid var(--primary-low);
+        border-radius: 18px;
+        resize: none;
+        margin: 0;
+
+        &:focus {
+          border-color: var(--tertiary);
+          outline: none;
+          background: var(--secondary);
+        }
+
+        &.error {
+          border-color: var(--danger);
+        }
+      }
+
+      .btn-primary {
+        position: absolute;
+        right: 6px;
+        bottom: 6px;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: unset;
+        margin: 0;
+
+        &:disabled {
+          opacity: 0.5;
+          background: var(--primary-low);
+        }
+
+        .d-icon {
+          color: var(--secondary);
+          margin: 0;
+          padding: 0;
+          font-size: var(--font-down-1);
+        }
+      }
+
+      .quick-reply-footer {
+        display: flex;
+        flex-direction: row;
+        min-width: fit-content;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 4px;
+        gap: 8px;
+
+        .char-counter {
+          font-size: var(--font-down-1);
+          color: var(--primary-medium);
+          position: absolute;
+          right: 8px;
+          bottom: -21px;
+
+          &.invalid {
+            color: var(--danger);
+          }
+
+          &.valid {
+            color: var(--success);
+          }
+        }
+      }
+
+      .quick-reply-error {
+        color: var(--danger);
+        font-size: var(--font-down-1);
+        margin-top: 4px;
+        padding-left: 44px;
+      }
+    }
+  }
+}

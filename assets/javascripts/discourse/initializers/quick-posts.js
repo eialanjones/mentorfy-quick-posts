@@ -1,5 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { registerQuickPostModel } from "../models/quick-post";
+import QuickPosts from "../components/quick-posts";
 
 export default {
   name: "quick-posts",
@@ -9,28 +10,8 @@ export default {
       // Registra o modelo e adaptador
       registerQuickPostModel(api);
 
-      // Registra o conector para a lista de tópicos
-      api.registerConnectorClass(
-        "topic-list-after-row",
-        "quick-posts",
-        {
-          shouldRender(args) {
-            return args.siteSettings.enable_quick_posts;
-          }
-        }
-      );
-
-      // Adiciona o componente ao título do tópico usando a nova API
-      api.decorateWidget("topic-title", {
-        after(helper) {
-          const { attrs } = helper;
-          if (!attrs.topic) {
-            return;
-          }
-
-          return helper.attach("quick-posts", { topic: attrs.topic });
-        }
-      });
+      // Renderiza o componente no outlet da lista de tópicos
+      api.renderInOutlet("topic-list-after-row", QuickPosts);
     });
   }
 }; 
