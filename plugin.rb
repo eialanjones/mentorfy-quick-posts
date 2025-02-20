@@ -2,7 +2,7 @@
 
 # name: mentorfy-quick-posts
 # about: adiciona funcionalidade de posts rápidos(comentários) aos tópicos
-# version: 0.4
+# version: 0.4.1
 # authors: Mentor
 # url: https://github.com/eialanjones/discourse-quick-posts
 

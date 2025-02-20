@@ -106,10 +106,11 @@ export default class QuickPosts extends Component {
       });
 
       this.nestedPosts = this.buildNestedPosts(this.allPosts);
-    } catch {
-      this.dialog.alert({
-        message: i18n("quick_posts.error_loading"),
-      });
+    } catch (error) {
+      // this.dialog.alert({
+      //   message: i18n("quick_posts.error_loading"),
+      // });
+      console.error("error", error);
       this.allPosts = [];
       this.nestedPosts = [];
     } finally {
