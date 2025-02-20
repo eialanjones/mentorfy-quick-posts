@@ -1,6 +1,15 @@
 .topic-list-item-separator {
   display: none !important;
 }
+
+.more-topics__container {
+  display: none;
+}
+
+.category-read-only-banner {
+  min-width: unset !important;
+  text-align: left !important;
+}
 .topic-list-item-quick-posts {
   display: flex;
 
@@ -31,18 +40,44 @@
   .loading-spinner {
     text-align: center;
     color: var(--primary-medium);
-    padding: 1em;
+    padding: 2em;
   }
 
   .quick-posts-list {
     margin-top: 18px;
+    margin: 1em 0;
 
     .quick-post-item {
+      margin: 1em 0;
       display: flex;
-      padding: 4px 0;
+      &:not(.nested-reply) {
+        gap: 1em;
+      }
+
+      &.nested-reply {
+        margin-left: 1em;
+        padding: 0.5em 1em;
+        border-left: 2px solid var(--primary-low);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 0.5em;
+      }
+
+      // Estilos para diferentes níveis de aninhamento
+      @for $i from 0 through 5 {
+        &.quick-post-depth-#{$i} {
+          margin-left: $i * 0.1em;
+
+          // Cores diferentes para cada nível de aninhamento
+          @if $i > 0 {
+            border-left-color: var(--primary);
+            border-left-width: max(1px, 3px - $i * 0.5px);
+            opacity: max(0.3, 1 - $i * 0.05);
+          }
+        }
+      }
 
       .quick-post-avatar {
-        margin-right: 12px;
+        flex-shrink: 0;
 
         img {
           width: 32px;
@@ -52,7 +87,8 @@
       }
 
       .quick-post-content {
-        flex: 1;
+        flex-grow: 1;
+        min-width: 0;
         background: var(--primary-very-low);
         border-radius: 18px;
         padding: 8px;
@@ -60,7 +96,10 @@
         padding-right: 12px;
 
         .quick-post-meta {
-          margin-bottom: 4px;
+          display: flex;
+          align-items: center;
+          gap: 0.5em;
+          margin-bottom: 0.5em;
 
           .username {
             font-weight: bold;
@@ -70,7 +109,17 @@
           .date {
             margin-left: 8px;
             color: var(--primary-medium);
-            font-size: var(--font-down-2);
+            font-size: 0.9em;
+          }
+
+          .reply-to-post {
+            padding: 0.25em;
+            color: var(--primary-medium);
+
+            &:hover {
+              color: var(--primary);
+              background: var(--primary-low);
+            }
           }
         }
 
@@ -82,6 +131,19 @@
             margin: 0;
           }
         }
+      }
+    }
+  }
+
+  .nested-replies {
+    margin-top: 1em;
+    margin-left: 1em;
+
+    .quick-post-item {
+      margin-bottom: 0.5em;
+
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
@@ -111,9 +173,8 @@
     text-align: center;
     color: var(--tertiary);
     background: transparent;
-    padding: 8px;
-    margin: 8px 0;
     font-weight: bold;
+    margin-top: 32px;
 
     &:hover {
       background: var(--primary-very-low);
@@ -121,107 +182,66 @@
   }
 
   .quick-reply {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 0.25em;
+    background: var(--secondary);
 
-    .quick-reply-input {
+    .replying-to {
       display: flex;
-      align-items: flex-start;
-      position: relative;
-      margin-bottom: 8px;
+      align-items: center;
+      margin-bottom: 0.5em;
+      padding: 0.5em;
+      background: var(--primary-very-low);
+      border-radius: 0.25em;
+      font-size: 0.9em;
 
-      .quick-reply-avatar {
-        margin-right: 12px;
-
-        img {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-        }
-      }
-
-      textarea {
-        flex: 1;
-        min-height: 36px;
-        padding: 8px 12px;
-        padding-right: 48px;
-        border: 1px solid var(--primary-low);
-        border-radius: 18px;
-        resize: none;
-        margin: 0;
-
-        &:focus {
-          border-color: var(--tertiary);
-          outline: none;
-          background: var(--secondary);
-        }
-
-        &.error {
-          border-color: var(--danger);
-        }
-      }
-
-      .btn-primary {
-        position: absolute;
-        right: 6px;
-        bottom: 6px;
-        width: 32px;
-        height: 32px;
-        padding: 0;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: unset;
-        margin: 0;
-
-        &:disabled {
-          opacity: 0.5;
-          background: var(--primary-low);
-        }
-
-        .d-icon {
-          color: var(--secondary);
-          margin: 0;
-          padding: 0;
-          font-size: var(--font-down-1);
-        }
-      }
-
-      .quick-reply-footer {
-        display: flex;
-        flex-direction: row;
-        min-width: fit-content;
-        align-items: center;
-        justify-content: flex-end;
-        margin-top: 4px;
-        gap: 8px;
-
-        .char-counter {
-          font-size: var(--font-down-1);
-          color: var(--primary-medium);
-          position: absolute;
-          right: 8px;
-          bottom: -21px;
-
-          &.invalid {
-            color: var(--danger);
-          }
-
-          &.valid {
-            color: var(--success);
-          }
-        }
-      }
-
-      .quick-reply-error {
-        color: var(--danger);
-        font-size: var(--font-down-1);
-        margin-top: 4px;
-        padding-left: 44px;
+      .cancel-reply {
+        margin-left: auto;
       }
     }
+  }
+
+  .quick-reply-input {
+    display: flex;
+    gap: 1em;
+
+    textarea {
+      flex-grow: 1;
+      min-height: 100px;
+      margin-bottom: 0.5em;
+      padding: 0.5em;
+      border: 1px solid var(--primary-low);
+      border-radius: 0.25em;
+      resize: vertical;
+
+      &.error {
+        border-color: var(--danger);
+      }
+    }
+  }
+
+  .quick-reply-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .char-counter {
+      font-size: 0.9em;
+
+      &.valid {
+        color: var(--success);
+      }
+
+      &.invalid {
+        color: var(--danger);
+      }
+    }
+  }
+
+  .quick-reply-error {
+    margin-top: 0.5em;
+    color: var(--danger);
+    font-size: 0.9em;
   }
 }

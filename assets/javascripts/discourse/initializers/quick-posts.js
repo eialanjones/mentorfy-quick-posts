@@ -13,5 +13,5 @@ export default {
       // Renderiza o componente no outlet da lista de tópicos
       api.renderInOutlet("topic-list-after-row", QuickPosts);
     });
-  }
-}; 
+  },
+};

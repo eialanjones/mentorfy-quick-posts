@@ -9,6 +9,7 @@ pt_BR:
       error_creating: "Erro ao criar quick post"
       disabled: "Quick Posts está desabilitado"
       topic_not_found: "Tópico não encontrado"
+      replying_to: "Respondendo a %{username}"
       whats_new:
         title: "Posts Rápidos - Novidades"
         feature_1:
@@ -20,4 +21,8 @@ pt_BR:
         feature_3:
           title: "Otimizações de Performance"
           description: "Melhor tempo de carregamento e interações mais suaves com o recurso de posts rápidos."
-      min_length_error: "O comentário deve ter pelo menos %{count} caracteres" 
+      min_length_error: "O comentário deve ter pelo menos %{count} caracteres"
+      reply_to: "Responder"
+      replying_to: "Respondendo a @%{username}"
+      cancel_reply: "Cancelar resposta"
+      missing_params: "Parâmetros faltando" 
