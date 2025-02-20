@@ -28,7 +28,7 @@ export default class QuickPosts extends Component {
 
   constructor() {
     super(...arguments);
-    if (this.siteSettings.enable_quick_posts) {
+    if (this.siteSettings.enable_quick_posts && this.currentUser) {
       this.loadAllPosts();
     }
   }
@@ -94,6 +94,10 @@ export default class QuickPosts extends Component {
 
   @action
   async loadAllPosts() {
+    if (!this.currentUser) {
+      return;
+    }
+
     this.isLoading = true;
     try {
       const response = await this.store.findAll("quick-post", {
@@ -107,9 +111,6 @@ export default class QuickPosts extends Component {
 
       this.nestedPosts = this.buildNestedPosts(this.allPosts);
     } catch (error) {
-      // this.dialog.alert({
-      //   message: i18n("quick_posts.error_loading"),
-      // });
       console.error("error", error);
       this.allPosts = [];
       this.nestedPosts = [];
@@ -169,9 +170,7 @@ export default class QuickPosts extends Component {
         }
       }
     } catch (error) {
-      this.dialog.alert({
-        message: i18n("quick_posts.error_creating"),
-      });
+      console.error("error", error);
     }
   }
 
