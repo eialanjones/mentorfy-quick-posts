@@ -5,6 +5,7 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import DButton from "discourse/components/d-button";
+import DEditor from "discourse/components/d-editor";
 import avatar from "discourse/helpers/avatar";
 import formatDate from "discourse/helpers/format-date";
 import htmlSafe from "discourse/helpers/html-safe";
@@ -87,8 +88,8 @@ export default class QuickPosts extends Component {
   }
 
   @action
-  updateReplyContent(event) {
-    this.replyContent = event.target.value;
+  updateReplyContent(value) {
+    this.replyContent = value;
     this.showError = false;
   }
 
@@ -325,12 +326,16 @@ export default class QuickPosts extends Component {
                   <div class="quick-reply-avatar">
                     {{avatar this.currentUser imageSize="small"}}
                   </div>
-                  <textarea
-                    value={{this.replyContent}}
-                    placeholder={{i18n "quick_posts.write_comment"}}
-                    {{on "input" this.updateReplyContent}}
-                    class={{if this.showError "error"}}
-                  ></textarea>
+                  <DEditor
+                    @value={{this.replyContent}}
+                    @onChange={{this.updateReplyContent}}
+                    @placeholder={{i18n "quick_posts.write_comment"}}
+                    @showUploadModal={{true}}
+                    @class={{if this.showError "error"}}
+                    @disabled={{false}}
+                    @siteSettings={{this.siteSettings}}
+                    @minimumPostLength={{this.minimumPostLength}}
+                  />
                   <div class="quick-reply-footer">
                     <span class="char-counter {{this.charCounterClass}}">
                       {{this.currentCharCount}}/{{this.minimumPostLength}}
