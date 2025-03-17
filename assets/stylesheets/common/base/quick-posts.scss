@@ -2,6 +2,14 @@
   display: none !important;
 }
 
+.post-stream {
+  .topic-post.clearfix.topic-owner.current-user-post.regular {
+    &:not(:first-of-type) {
+      display: none;
+    }
+  }
+}
+
 .more-topics__container {
   display: none;
 }
@@ -10,6 +18,7 @@
   min-width: unset !important;
   text-align: left !important;
 }
+
 .topic-list-item-quick-posts {
   display: flex;
 
@@ -44,12 +53,12 @@
   }
 
   .quick-posts-list {
-    margin-top: 18px;
     margin: 1em 0;
 
     .quick-post-item {
       margin: 1em 0;
       display: flex;
+
       &:not(.nested-reply) {
         gap: 1em;
       }
@@ -155,7 +164,7 @@
 
     .create-quick-post.btn-flat {
       color: var(--tertiary);
-      padding: 0em;
+      padding: 0;
       font-weight: bold;
 
       &:hover {
@@ -243,5 +252,35 @@
     margin-top: 0.5em;
     color: var(--danger);
     font-size: 0.9em;
+  }
+}
+
+.topic-quick-posts-container {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  width: 100%;
+  
+  .quick-posts {
+    margin-top: 0;
+    border: 1px solid var(--primary-low);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    
+    .quick-posts-list {
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+    
+    .load-more {
+      margin: 16px 0 8px 0;
+    }
+  }
+}
+
+// Esconder os posts existentes dentro do tópico quando o quick-posts está habilitado
+body.quick-posts-enabled {
+  .topic-post:not(.topic-owner) {
+    display: none;
   }
 }
